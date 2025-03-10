@@ -10,7 +10,7 @@ public class Game implements IGame {
    private final boolean[] inPenaltyBox = new boolean[6];
 
    private final Map<String, LinkedList<String>> questions = new HashMap<>();
-   private static final String[] CATEGORIES = {"Pop", "Science", "Sports", "Rock"};
+   private static final String[] CATEGORIES = {"Pop", "Science", "Sports", "Rock", "Geography"};
 
    private int currentPlayer = 0;
    private boolean isGettingOutOfPenaltyBox;
@@ -24,6 +24,7 @@ public class Game implements IGame {
          questions.get("Science").add("Science Question " + i);
          questions.get("Sports").add("Sports Question " + i);
          questions.get("Rock").add("Rock Question " + i);
+         questions.get("Geography").add("Geography Question " + i);
       }
    }
 
@@ -106,7 +107,6 @@ public class Game implements IGame {
       nextPlayer();
       return true;
    }
-
 
    private boolean didPlayerWin() {
       return purses[currentPlayer] != 6;
