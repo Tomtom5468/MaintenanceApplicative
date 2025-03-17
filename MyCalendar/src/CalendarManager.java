@@ -1,5 +1,9 @@
 package src;
 
+import src.event.Event;
+import src.event.EventFabricator;
+import src.periodique.Periodique;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,21 +17,22 @@ public class CalendarManager {
 
     public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
                              String lieu, String participants, int frequenceJours) {
-        Event e = new Event(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
+        Event e = EventFabricator.fabricateEvent(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
         events.add(e);
     }
 
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
         List<Event> result = new ArrayList<>();
         for (Event e : events) {
-            if (e.type.equals("PERIODIQUE")) {
+            if (e instanceof Periodique) {
+                Periodique p = (Periodique) e;
                 LocalDateTime temp = e.dateDebut.getDateDebut();
                 while (temp.isBefore(fin)) {
                     if (!temp.isBefore(debut)) {
                         result.add(e);
                         break;
                     }
-                    temp = temp.plusDays(e.frequenceJours);
+                    temp = temp.plusDays(p.getFrequenceJours().getFrequenceJours());
                 }
             } else if (!e.dateDebut.getDateDebut().isBefore(debut) && !e.dateDebut.getDateDebut().isAfter(fin)) {
                 result.add(e);
@@ -40,7 +45,7 @@ public class CalendarManager {
         LocalDateTime fin1 = e1.dateDebut.getDateDebut().plusMinutes(e1.dureeMinutes.getDureeMinutes());
         LocalDateTime fin2 = e2.dateDebut.getDateDebut().plusMinutes(e2.dureeMinutes.getDureeMinutes());
 
-        if (e1.type.equals("PERIODIQUE") || e2.type.equals("PERIODIQUE")) {
+        if (e1 instanceof Periodique || e2 instanceof Periodique) {
             return false; // Simplification abusive
         }
 

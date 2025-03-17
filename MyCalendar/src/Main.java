@@ -1,5 +1,7 @@
 package src;
 
+import src.event.Event;
+
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import java.util.List;

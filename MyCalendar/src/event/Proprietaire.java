@@ -1,4 +1,4 @@
-package src;
+package src.event;
 
 import lombok.Getter;
 import lombok.Setter;
