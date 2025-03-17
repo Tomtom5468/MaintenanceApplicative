@@ -1,13 +1,14 @@
+import affichage.Compte;
 import event.Event;
 import metier.CalendarManager;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+    static int nbUtilisateurs = 0;
+
     public static void main(String[] args) {
         CalendarManager calendar = new CalendarManager();
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +17,9 @@ public class Main {
 
         String utilisateurs[] = new String[99];
         String motsDePasses[] = new String[99];
-        int nbUtilisateurs = 0;
+
+        Map<String, Runnable> compte = new HashMap<>();
+        compte.put("1", () -> Compte.seConnecter(scanner, utilisateurs, motsDePasses));
 
         while (true) {
 
