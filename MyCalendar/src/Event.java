@@ -1,10 +1,12 @@
+package src;
+
 import java.time.LocalDateTime;
 
 public class Event {
     public String type; // "RDV_PERSONNEL", "REUNION", "PERIODIQUE"
     public String title;
     public String proprietaire;
-    public LocalDateTime dateDebut;
+    public DateDebut dateDebut;
     public int dureeMinutes;
     public String lieu; // utilisé seulement pour REUNION
     public String participants; // séparés par virgules (pour REUNION uniquement)
@@ -15,7 +17,7 @@ public class Event {
         this.type = type;
         this.title = title;
         this.proprietaire = proprietaire;
-        this.dateDebut = dateDebut;
+        this.dateDebut = new DateDebut(dateDebut);
         this.dureeMinutes = dureeMinutes;
         this.lieu = lieu;
         this.participants = participants;
