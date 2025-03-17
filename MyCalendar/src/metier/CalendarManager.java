@@ -1,4 +1,4 @@
-package src;
+package src.metier;
 
 import src.event.Event;
 import src.event.EventFabricator;
@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarManager {
-    public List<Event> events;
+    public Events events;
 
     public CalendarManager() {
-        this.events = new ArrayList<>();
+        this.events = new Events();
     }
 
     public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
                              String lieu, String participants, int frequenceJours) {
         Event e = EventFabricator.fabricateEvent(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
-        events.add(e);
+        events.ajouterEvent(e);
     }
 
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
         List<Event> result = new ArrayList<>();
-        for (Event e : events) {
+        for (Event e : events.getEvents()) {
             if (e instanceof Periodique) {
                 Periodique p = (Periodique) e;
                 LocalDateTime temp = e.dateDebut.getDateDebut();
@@ -56,7 +56,7 @@ public class CalendarManager {
     }
 
     public void afficherEvenements() {
-        for (Event e : events) {
+        for (Event e : events.getEvents()) {
             System.out.println(e.description());
         }
     }

@@ -1,6 +1,7 @@
 package src;
 
 import src.event.Event;
+import src.metier.CalendarManager;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
