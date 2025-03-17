@@ -1,11 +1,11 @@
-package src.event;
+package event;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import src.periodique.Periodique;
-import src.rdv.RendezVous;
-import src.reunion.Reunion;
+import periodique.Periodique;
+import rdv.RendezVous;
+import reunion.Reunion;
 
 import java.time.LocalDateTime;
 

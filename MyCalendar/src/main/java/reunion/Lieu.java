@@ -1,4 +1,4 @@
-package src.reunion;
+package reunion;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,9 @@
-package src.metier;
+package metier;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import src.event.Event;
+import event.Event;
 
 import java.util.List;
 

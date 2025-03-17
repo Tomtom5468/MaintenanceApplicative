@@ -1,8 +1,8 @@
-package src.periodique;
+package periodique;
 
 import lombok.Getter;
 import lombok.Setter;
-import src.event.Event;
+import event.Event;
 
 import java.time.LocalDateTime;
 

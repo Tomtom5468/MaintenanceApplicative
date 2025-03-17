@@ -1,8 +1,8 @@
-package src.rdv;
+package rdv;
 
 import lombok.Getter;
 import lombok.Setter;
-import src.event.Event;
+import event.Event;
 
 import java.time.LocalDateTime;
 

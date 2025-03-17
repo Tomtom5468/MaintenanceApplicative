@@ -1,8 +1,8 @@
-package src.metier;
+package metier;
 
-import src.event.Event;
-import src.event.EventFabricator;
-import src.periodique.Periodique;
+import event.Event;
+import event.EventFabricator;
+import periodique.Periodique;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

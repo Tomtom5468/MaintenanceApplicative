@@ -1,4 +1,4 @@
-package src.periodique;
+package periodique;
 
 import lombok.Getter;
 import lombok.Setter;

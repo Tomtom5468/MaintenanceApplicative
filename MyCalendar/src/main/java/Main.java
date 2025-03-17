@@ -1,7 +1,5 @@
-package src;
-
-import src.event.Event;
-import src.metier.CalendarManager;
+import event.Event;
+import metier.CalendarManager;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
