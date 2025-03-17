@@ -7,7 +7,7 @@ public class Event {
     public Title title;
     public Proprietaire proprietaire;
     public DateDebut dateDebut;
-    public int dureeMinutes;
+    public DureeMinutes dureeMinutes;
     public String lieu; // utilisé seulement pour REUNION
     public String participants; // séparés par virgules (pour REUNION uniquement)
     public int frequenceJours; // uniquement pour PERIODIQUE
@@ -18,7 +18,7 @@ public class Event {
         this.title = new Title(title);
         this.proprietaire = new Proprietaire(proprietaire);
         this.dateDebut = new DateDebut(dateDebut);
-        this.dureeMinutes = dureeMinutes;
+        this.dureeMinutes = new DureeMinutes(dureeMinutes);
         this.lieu = lieu;
         this.participants = participants;
         this.frequenceJours = frequenceJours;
