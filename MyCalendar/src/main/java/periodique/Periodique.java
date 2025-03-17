@@ -19,4 +19,16 @@ public class Periodique extends Event {
     public String description(){
         return "Événement périodique : " + title.getNom() + " tous les " + frequenceJours.getFrequenceJours() + " jours";
     }
+
+    @Override
+    public boolean isBefore (LocalDateTime debut, LocalDateTime fin) {
+        LocalDateTime temp = this.dateDebut.getDateDebut();
+        while (temp.isBefore(fin)) {
+            if (!temp.isBefore(debut)) {
+                return true;
+            }
+            temp = temp.plusDays(frequenceJours.getFrequenceJours());
+        }
+        return false;
+    }
 }

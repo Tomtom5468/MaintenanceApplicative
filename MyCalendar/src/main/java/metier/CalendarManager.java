@@ -7,6 +7,7 @@ import periodique.Periodique;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CalendarManager {
     public Events events;
@@ -22,37 +23,18 @@ public class CalendarManager {
     }
 
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
-        List<Event> result = new ArrayList<>();
-        for (Event e : events.getEvents()) {
-            if (e instanceof Periodique) {
-                Periodique p = (Periodique) e;
-                LocalDateTime temp = e.dateDebut.getDateDebut();
-                while (temp.isBefore(fin)) {
-                    if (!temp.isBefore(debut)) {
-                        result.add(e);
-                        break;
-                    }
-                    temp = temp.plusDays(p.getFrequenceJours().getFrequenceJours());
-                }
-            } else if (!e.dateDebut.getDateDebut().isBefore(debut) && !e.dateDebut.getDateDebut().isAfter(fin)) {
-                result.add(e);
-            }
-        }
-        return result;
+        return events.getEvents().stream()
+                .filter(e -> e.isBefore(debut, fin))
+                .collect(Collectors.toList());
     }
 
     public boolean conflit(Event e1, Event e2) {
         LocalDateTime fin1 = e1.dateDebut.getDateDebut().plusMinutes(e1.dureeMinutes.getDureeMinutes());
         LocalDateTime fin2 = e2.dateDebut.getDateDebut().plusMinutes(e2.dureeMinutes.getDureeMinutes());
 
-        if (e1 instanceof Periodique || e2 instanceof Periodique) {
-            return false; // Simplification abusive
-        }
-
-        if (e1.dateDebut.getDateDebut().isBefore(fin2) && fin1.isAfter(e2.dateDebut.getDateDebut())) {
-            return true;
-        }
-        return false;
+        return !(e1 instanceof Periodique || e2 instanceof Periodique) &&
+                e1.dateDebut.getDateDebut().isBefore(fin2) &&
+                fin1.isAfter(e2.dateDebut.getDateDebut());
     }
 
     public void afficherEvenements() {

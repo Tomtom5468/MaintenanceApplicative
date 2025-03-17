@@ -22,4 +22,9 @@ public class Reunion extends Event {
     public String description(){
         return "Réunion : " + title.getNom() + " à " + lieu.getLieu() + " avec " + participants.getParticipants();
     }
+
+    @Override
+    public boolean isBefore(LocalDateTime debut, LocalDateTime fin) {
+        return !this.dateDebut.getDateDebut().isBefore(debut) && !this.dateDebut.getDateDebut().isAfter(fin);
+    }
 }

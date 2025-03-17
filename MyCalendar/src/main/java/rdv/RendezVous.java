@@ -17,4 +17,9 @@ public class RendezVous extends Event {
     public String description() {
         return "RDV : " + title.getNom() + " à " + dateDebut.getDateDebut().toString();
     }
+
+    @Override
+    public boolean isBefore(LocalDateTime debut, LocalDateTime fin) {
+        return !this.dateDebut.getDateDebut().isBefore(debut) && !this.dateDebut.getDateDebut().isAfter(fin);
+    }
 }
