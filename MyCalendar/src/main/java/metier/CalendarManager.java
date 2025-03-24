@@ -38,7 +38,13 @@ public class CalendarManager {
     }
 
     public void afficherEvenements() {
-        for (Event e : events.getEvents()) {
+        List<Event> liste = events.getEvents();
+        if (liste == null || liste.isEmpty()) {
+            System.out.println("Aucun événement à afficher.");
+            return;
+        }
+
+        for (Event e : liste) {
             System.out.println(e.description());
         }
     }

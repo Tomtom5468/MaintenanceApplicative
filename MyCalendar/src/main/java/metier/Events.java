@@ -1,17 +1,18 @@
 package metier;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import event.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Setter
-@NoArgsConstructor
 public class Events {
     private List<Event> events;
+
+    public Events() {
+        this.events = new ArrayList<>();
+    }
 
     public Events(List<Event> events) {
         this.events = events;
@@ -31,5 +32,9 @@ public class Events {
 
     public void getEvent(int index) {
         events.get(index);
+    }
+
+    public List<Event> getEvents() {
+        return events == null ? new ArrayList<Event>() : events;
     }
 }
