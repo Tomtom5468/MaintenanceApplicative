@@ -3,7 +3,6 @@ package metier;
 import event.Event;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -55,5 +54,20 @@ public class CalendarManagerTest {
 
         List<Event> e = manager.events.getEvents();
         assertTrue(manager.conflit(e.get(0), e.get(1)));
+    }
+
+    @Test
+    public void testEvenementsDansPeriode() {
+        CalendarManager calendar = new CalendarManager();
+
+        calendar.ajouterEvent("Rendez-vous", "Dentiste", "Alice", LocalDateTime.of(2025, 3, 24, 9, 0), 30, null, null, 0,"");
+        calendar.ajouterEvent("Periodique", "Conférence", "Alice", LocalDateTime.of(2025, 3, 25, 9, 0), 60, null, null, 0,"");
+        calendar.ajouterEvent("Rendez-vous", "Dentiste", "Alice", LocalDateTime.of(2005, 3, 26, 9, 0), 30, null, null, 0,"");
+
+        LocalDateTime debut = LocalDateTime.of(2025, 3, 20, 0, 0);
+        LocalDateTime fin = LocalDateTime.of(2025, 3, 30, 0, 0);
+        List<Event> evenements = calendar.eventsDansPeriode(debut, fin);
+
+        assertEquals(2, evenements.size());
     }
 }

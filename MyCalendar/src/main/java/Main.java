@@ -42,10 +42,11 @@ public class Main {
                 System.out.println("2 - Afficher les événements d’un MOIS");
                 System.out.println("3 - Afficher les événements d’une SEMAINE");
                 System.out.println("4 - Afficher les événements d’un JOUR");
-                System.out.println("5 - Ajouter un RDV personnel");
-                System.out.println("6 - Ajouter une réunion");
-                System.out.println("7 - Ajouter un évènement périodique");
-                System.out.println("8 - Se déconnecter");
+                System.out.println("5 - Afficher les événements par période");
+                System.out.println("6 - Ajouter un RDV personnel");
+                System.out.println("7 - Ajouter une réunion");
+                System.out.println("8 - Ajouter un évènement périodique");
+                System.out.println("9 - Se déconnecter");
                 System.out.print("Votre choix : ");
                 String choixAction = scanner.nextLine();
 
@@ -54,10 +55,11 @@ public class Main {
                 actionManager.enregistrer("2", () -> new ActionAfficherParMois(calendar, scanner, userRef[0]));
                 actionManager.enregistrer("3", () -> new ActionAfficherParSemaine(calendar, scanner, userRef[0]));
                 actionManager.enregistrer("4", () -> new ActionAfficherParJour(calendar, scanner, userRef[0]));
-                actionManager.enregistrer("5", () -> new ActionAjouterRdv(calendar, scanner, userRef[0]));
-                actionManager.enregistrer("6", () -> new ActionAjouterReunion(calendar, scanner, userRef[0]));
-                actionManager.enregistrer("7", () -> new ActionAjouterPeriodique(calendar, scanner, userRef[0]));
-                actionManager.enregistrer("8", () -> {
+                actionManager.enregistrer("5", () -> new ActionAfficherPeriode(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("6", () -> new ActionAjouterRdv(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("7", () -> new ActionAjouterReunion(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("8", () -> new ActionAjouterPeriodique(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("9", () -> {
                     new ActionDeconnexion(calendar, scanner, userRef[0]).executer();
                     System.out.println("Voulez-vous continuer ? (oui / non)");
                     continuer[0] = scanner.nextLine().trim().equalsIgnoreCase("oui");
