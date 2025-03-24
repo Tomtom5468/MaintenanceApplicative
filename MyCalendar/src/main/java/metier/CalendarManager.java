@@ -2,11 +2,13 @@ package metier;
 
 import event.Event;
 import event.EventFabricator;
+import event.Id;
 import periodique.Periodique;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class CalendarManager {
@@ -56,4 +58,9 @@ public class CalendarManager {
             System.out.println(e.description());
         }
     }
+
+    public boolean supprimerEventParId(Id eventId) {
+        return events.getEvents().removeIf(e -> e.getId().equals(eventId));
+    }
+
 }

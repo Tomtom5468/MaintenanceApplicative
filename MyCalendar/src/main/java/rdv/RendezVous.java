@@ -5,17 +5,18 @@ import lombok.Setter;
 import event.Event;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 public class RendezVous extends Event {
-    public RendezVous(String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes) {
-        super(title, proprietaire, dateDebut, dureeMinutes);
+    public RendezVous(String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes, UUID id) {
+        super(title, proprietaire, dateDebut, dureeMinutes,id);
     }
 
     @Override
     public String description() {
-        return "RDV : " + title.getNom() + " à " + dateDebut.getDateDebut().toString();
+        return "[ID: " + id.getId() + "] : RDV : " + title.getNom() + " à " + dateDebut.getDateDebut().toString();
     }
 
     @Override

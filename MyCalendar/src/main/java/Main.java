@@ -46,7 +46,9 @@ public class Main {
                 System.out.println("6 - Ajouter un RDV personnel");
                 System.out.println("7 - Ajouter une réunion");
                 System.out.println("8 - Ajouter un évènement périodique");
-                System.out.println("9 - Se déconnecter");
+                System.out.println("9 - Ajouter un évènement anniversaire");
+                System.out.println("10 - Supprimer un évènement");
+                System.out.println("11 - Se déconnecter");
                 System.out.print("Votre choix : ");
                 String choixAction = scanner.nextLine();
 
@@ -59,7 +61,9 @@ public class Main {
                 actionManager.enregistrer("6", () -> new ActionAjouterRdv(calendar, scanner, userRef[0]));
                 actionManager.enregistrer("7", () -> new ActionAjouterReunion(calendar, scanner, userRef[0]));
                 actionManager.enregistrer("8", () -> new ActionAjouterPeriodique(calendar, scanner, userRef[0]));
-                actionManager.enregistrer("9", () -> {
+                actionManager.enregistrer("9", () -> new ActionAjouterAnniversaire(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("10", () -> new ActionSupprimerEvent(calendar, scanner, userRef[0]));
+                actionManager.enregistrer("11", () -> {
                     new ActionDeconnexion(calendar, scanner, userRef[0]).executer();
                     System.out.println("Voulez-vous continuer ? (oui / non)");
                     continuer[0] = scanner.nextLine().trim().equalsIgnoreCase("oui");

@@ -8,6 +8,7 @@ import reunion.Reunion;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,9 +18,9 @@ public class EventPolymorphismeTest {
     public void testDescriptionsPolymorphes() {
         LocalDateTime now = LocalDateTime.now();
 
-        Event rdv = new RendezVous("Docteur", "Alice", now, 30);
-        Event reunion = new Reunion("Projet", "Bob", now, 60, "Salle 1", "Équipe");
-        Event periodique = new Periodique("Méditation", "Claire", now, 20, 2);
+        Event rdv = new RendezVous("Docteur", "Alice", now, 30, UUID.randomUUID());
+        Event reunion = new Reunion("Projet", "Bob", now, 60, "Salle 1", "Équipe",UUID.randomUUID());
+        Event periodique = new Periodique("Méditation", "Claire", now, 20, 2,UUID.randomUUID());
 
         List<Event> events = List.of(rdv, reunion, periodique);
 
@@ -32,9 +33,9 @@ public class EventPolymorphismeTest {
     @Test
     public void testTriChronologique() {
         LocalDateTime now = LocalDateTime.of(2025, 3, 24, 9, 0);
-        Event e1 = new RendezVous("Dentiste", "A", now.plusDays(3), 20);
-        Event e2 = new Reunion("Réunion", "B", now.plusDays(1), 60, "Bureau", "Team");
-        Event e3 = new Periodique("Gym", "C", now.plusDays(2), 45, 7);
+        Event e1 = new RendezVous("Dentiste", "A", now.plusDays(3), 20, UUID.randomUUID());
+        Event e2 = new Reunion("Réunion", "B", now.plusDays(1), 60, "Bureau", "Team",UUID.randomUUID());
+        Event e3 = new Periodique("Gym", "C", now.plusDays(2), 45, 7,UUID.randomUUID());
 
         List<Event> list = new ArrayList<>(List.of(e1, e2, e3));
 
@@ -49,9 +50,9 @@ public class EventPolymorphismeTest {
     public void testRechercheDansIntervalle() {
         LocalDateTime ref = LocalDateTime.of(2025, 3, 1, 8, 0);
 
-        Event e1 = new RendezVous("RDV 1", "X", ref.plusDays(1), 30);
-        Event e2 = new Reunion("Réunion 1", "Y", ref.plusDays(5), 60, "Salle", "Dev");
-        Event e3 = new Periodique("Yoga", "Z", ref, 30, 2); // tous les 2 jours
+        Event e1 = new RendezVous("RDV 1", "X", ref.plusDays(1), 30,UUID.randomUUID());
+        Event e2 = new Reunion("Réunion 1", "Y", ref.plusDays(5), 60, "Salle", "Dev",UUID.randomUUID());
+        Event e3 = new Periodique("Yoga", "Z", ref, 30, 2,UUID.randomUUID());
 
         List<Event> liste = List.of(e1, e2, e3);
         LocalDateTime debut = ref.plusDays(4);

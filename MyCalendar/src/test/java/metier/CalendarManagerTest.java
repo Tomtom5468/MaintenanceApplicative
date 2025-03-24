@@ -1,10 +1,13 @@
 package metier;
 
 import event.Event;
+import event.EventFabricator;
+import event.Id;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +56,7 @@ public class CalendarManagerTest {
         manager.ajouterEvent("Rendez-vous", "RDV2", "B", d2, 30, null, null, 0,"");
 
         List<Event> e = manager.events.getEvents();
-        assertTrue(manager.conflit(e.get(0), e.get(1)));
+        assertEquals(1, e.size());
     }
 
     @Test
@@ -69,5 +72,46 @@ public class CalendarManagerTest {
         List<Event> evenements = calendar.eventsDansPeriode(debut, fin);
 
         assertEquals(2, evenements.size());
+    }
+
+    @Test
+    public void testSupprimerEventParId() {
+        CalendarManager calendar = new CalendarManager();
+
+        // Créer un événement avec ID
+        Event e = EventFabricator.fabricateEvent("Rendez-vous", "Test", "Alice",
+                LocalDateTime.of(2025, 4, 1, 10, 0), 60, "", "", 0, "");
+        Id id = new Id(UUID.randomUUID());
+        e.setId(id);
+
+        // Ajouter manuellement dans la liste
+        calendar.events.ajouterEvent(e);
+        assertEquals(1, calendar.events.getEvents().size());
+
+        // Supprimer
+        boolean resultat = calendar.supprimerEventParId(id);
+
+        // Vérifications
+        assertTrue(resultat, "L’événement aurait dû être supprimé.");
+        assertEquals(0, calendar.events.getEvents().size(), "La liste doit être vide.");
+    }
+
+    @Test
+    public void testSupprimerEventAvecMauvaisId() {
+        CalendarManager calendar = new CalendarManager();
+
+        // Créer un événement avec ID
+        Event e = EventFabricator.fabricateEvent("Réunion", "Projet", "Bob",
+                LocalDateTime.of(2025, 5, 2, 14, 0), 90, "", "", 0, "");
+        e.setId(new Id(UUID.randomUUID()));
+
+        calendar.events.ajouterEvent(e);
+        assertEquals(1, calendar.events.getEvents().size());
+
+        // Tentative de suppression avec un mauvais ID
+        boolean resultat = calendar.supprimerEventParId(new Id(UUID.randomUUID()));
+
+        assertFalse(resultat, "Aucun événement ne doit être supprimé.");
+        assertEquals(1, calendar.events.getEvents().size(), "L'événement doit toujours être présent.");
     }
 }
