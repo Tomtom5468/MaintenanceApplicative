@@ -39,7 +39,7 @@ public class ActionAjouterReunion extends Action {
 
         calendar.ajouterEvent("Réunion", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute),
-                duree, lieu, participants, 0);
+                duree, lieu, participants, 0,"");
 
         System.out.println("Réunion ajoutée !");
     }

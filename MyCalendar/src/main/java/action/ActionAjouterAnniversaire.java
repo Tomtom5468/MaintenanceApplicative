@@ -5,8 +5,8 @@ import metier.CalendarManager;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-public class ActionAjouterPeriodique extends Action {
-    public ActionAjouterPeriodique(CalendarManager calendar, Scanner scanner, String utilisateur) {
+public class ActionAjouterAnniversaire extends Action {
+    public ActionAjouterAnniversaire(CalendarManager calendar, Scanner scanner, String utilisateur) {
         super(calendar, scanner, utilisateur);
     }
 
@@ -24,13 +24,15 @@ public class ActionAjouterPeriodique extends Action {
         int heure = Integer.parseInt(scanner.nextLine());
         System.out.print("Minute début (0-59) : ");
         int minute = Integer.parseInt(scanner.nextLine());
-        System.out.print("Fréquence (en jours) : ");
-        int frequence = Integer.parseInt(scanner.nextLine());
+        System.out.print("Durée (en minutes) : ");
+        int duree = Integer.parseInt(scanner.nextLine());
+        System.out.print("Nom du fêté : ");
+        String nom = scanner.nextLine();
 
-        calendar.ajouterEvent("Periodique", titre, utilisateur,
-                LocalDateTime.of(annee, mois, jour, heure, minute),
-                0, "", "", frequence,"");
+        calendar.ajouterEvent("Anniversaire", titre, utilisateur,
+                LocalDateTime.of(annee, mois, jour, heure, minute), duree,
+                nom, "", 0,nom);
 
-        System.out.println("Événement périodique ajouté !");
+        System.out.println("Événement anniversaire ajouté !");
     }
 }

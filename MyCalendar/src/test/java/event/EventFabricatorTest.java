@@ -11,7 +11,7 @@ public class EventFabricatorTest {
     public void testFabricateRendezVous() {
         LocalDateTime now = LocalDateTime.now();
         Event event = EventFabricator.fabricateEvent(
-                "Rendez-vous", "Dentiste", "Alice", now, 30, null, null, 0);
+                "Rendez-vous", "Dentiste", "Alice", now, 30, null, null, 0,"");
 
         assertNotNull(event);
         assertEquals("Dentiste", event.getTitle().getNom());
@@ -24,7 +24,7 @@ public class EventFabricatorTest {
     public void testFabricatePeriodique() {
         LocalDateTime now = LocalDateTime.now();
         Event event = EventFabricator.fabricateEvent(
-                "Periodique", "Yoga", "Bob", now, 60, null, null, 7);
+                "Periodique", "Yoga", "Bob", now, 60, null, null, 7,"");
 
         assertNotNull(event);
         assertEquals("Yoga", event.getTitle().getNom());
@@ -36,7 +36,7 @@ public class EventFabricatorTest {
     public void testFabricateReunion() {
         LocalDateTime now = LocalDateTime.now();
         Event event = EventFabricator.fabricateEvent(
-                "Réunion", "Sprint Planning", "Carla", now, 90, "Salle A", "Dev Team", 0);
+                "Réunion", "Sprint Planning", "Carla", now, 90, "Salle A", "Dev Team", 0,"");
 
         assertNotNull(event);
         assertEquals("Sprint Planning", event.getTitle().getNom());
@@ -46,7 +46,7 @@ public class EventFabricatorTest {
     @Test
     public void testFabricateInvalidType() {
         Event event = EventFabricator.fabricateEvent(
-                "Inconnu", "Titre", "Nom", LocalDateTime.now(), 10, null, null, 0);
+                "Inconnu", "Titre", "Nom", LocalDateTime.now(), 10, null, null, 0,"");
         assertNull(event);
     }
 

@@ -17,8 +17,8 @@ public class CalendarManager {
     }
 
     public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
-                             String lieu, String participants, int frequenceJours) {
-        Event e = EventFabricator.fabricateEvent(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
+                             String lieu, String participants, int frequenceJours, String nom) {
+        Event e = EventFabricator.fabricateEvent(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours,nom);
         events.ajouterEvent(e);
     }
 

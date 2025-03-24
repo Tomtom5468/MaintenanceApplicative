@@ -28,7 +28,7 @@ public class ActionAjouterRdv extends Action {
 
         calendar.ajouterEvent("Rendez-vous", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute), duree,
-                "", "", 0);
+                "", "", 0,"");
 
         System.out.println("Événement ajouté.");
     }

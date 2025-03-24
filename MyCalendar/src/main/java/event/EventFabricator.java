@@ -1,5 +1,6 @@
 package event;
 
+import anniversaire.Anniversaire;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class EventFabricator {
 
     public static Event fabricateEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
-                                       String lieu, String participants, int frequenceJours) {
+                                       String lieu, String participants, int frequenceJours, String nom) {
         switch (type){
             case "Rendez-vous":
                 return new RendezVous(title, proprietaire, dateDebut, dureeMinutes);
@@ -23,6 +24,8 @@ public class EventFabricator {
                 return new Periodique(title, proprietaire, dateDebut, dureeMinutes, frequenceJours);
             case "Réunion":
                 return new Reunion(title, proprietaire, dateDebut, dureeMinutes, lieu, participants);
+            case "Anniversaire":
+                return new Anniversaire(title, proprietaire, dateDebut, dureeMinutes,nom);
             default:
                 return null;
         }
