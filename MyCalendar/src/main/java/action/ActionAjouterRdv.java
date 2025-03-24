@@ -26,9 +26,14 @@ public class ActionAjouterRdv extends Action {
         System.out.print("Durée (en minutes) : ");
         int duree = Integer.parseInt(scanner.nextLine());
 
-        calendar.ajouterEvent("Rendez-vous", titre, utilisateur,
+        boolean success = calendar.ajouterEvent("Rendez-vous", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute), duree,
                 "", "", 0,"");
+        if (success) {
+            System.out.println("Événement ajouté.");
+        } else {
+            System.out.println("Conflit détecté : événement non ajouté.");
+        }
 
         System.out.println("Événement ajouté.");
     }

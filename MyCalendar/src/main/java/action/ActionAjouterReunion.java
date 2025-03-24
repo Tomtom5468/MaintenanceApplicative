@@ -37,10 +37,15 @@ public class ActionAjouterReunion extends Action {
             System.out.println("Ajouter un autre ? (oui / non)");
         }
 
-        calendar.ajouterEvent("Réunion", titre, utilisateur,
+
+
+        boolean success = calendar.ajouterEvent("Réunion", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute),
                 duree, lieu, participants, 0,"");
-
-        System.out.println("Réunion ajoutée !");
+        if (success) {
+            System.out.println("Événement ajouté.");
+        } else {
+            System.out.println("Conflit détecté : événement non ajouté.");
+        }
     }
 }

@@ -29,10 +29,13 @@ public class ActionAjouterAnniversaire extends Action {
         System.out.print("Nom du fêté : ");
         String nom = scanner.nextLine();
 
-        calendar.ajouterEvent("Anniversaire", titre, utilisateur,
+        boolean success = calendar.ajouterEvent("Anniversaire", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute), duree,
                 nom, "", 0,nom);
-
-        System.out.println("Événement anniversaire ajouté !");
+        if (success) {
+            System.out.println("Événement ajouté.");
+        } else {
+            System.out.println("Conflit détecté : événement non ajouté.");
+        }
     }
 }

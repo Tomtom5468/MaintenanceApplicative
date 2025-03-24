@@ -16,10 +16,18 @@ public class CalendarManager {
         this.events = new Events();
     }
 
-    public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
+    public boolean ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
                              String lieu, String participants, int frequenceJours, String nom) {
         Event e = EventFabricator.fabricateEvent(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours,nom);
+
+        for (Event existant : events.getEvents()) {
+            if (conflit(e, existant)) {
+                return false;
+            }
+        }
+
         events.ajouterEvent(e);
+        return true;
     }
 
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {

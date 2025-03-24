@@ -27,10 +27,13 @@ public class ActionAjouterPeriodique extends Action {
         System.out.print("Fréquence (en jours) : ");
         int frequence = Integer.parseInt(scanner.nextLine());
 
-        calendar.ajouterEvent("Periodique", titre, utilisateur,
+        boolean success = calendar.ajouterEvent("Periodique", titre, utilisateur,
                 LocalDateTime.of(annee, mois, jour, heure, minute),
                 0, "", "", frequence,"");
-
-        System.out.println("Événement périodique ajouté !");
+        if (success) {
+            System.out.println("Événement ajouté.");
+        } else {
+            System.out.println("Conflit détecté : événement non ajouté.");
+        }
     }
 }
